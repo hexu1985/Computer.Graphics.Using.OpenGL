@@ -1,0 +1,21 @@
+/* Note Well
+  Functions that use any OpenGL data types have 
+  to have the proper include statements preceding them
+  to compile without errors. Complete programs have the
+  necessary includes, standalone functions do not.
+  On MS Windows operating system this usually requires
+  at least the following: */
+
+#include <windows.h>
+#include <GL\GL.h>
+
+
+/* additional undefined data structures may be found
+in code in appendix3.cpp, cutting and pasting is one 
+option. Some structures are defined in the book's text
+outside of programs in figures such as GLintPoint on
+page 49. This is in the headerfiles subdirectory
+Some undefined data structures may have to be fleshed
+out by the student. Some may be found in other libraries
+such as glut.h or Glu.h
+*/

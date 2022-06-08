@@ -1,0 +1,18 @@
+#define PI 3.1415926
+void TaperedCylinder::makeExtentPoints(PointCluster& clust)  
+{
+   float radius_base=4/3.;
+   float radius_top=4/3.*s;
+
+   for (int i= 0; i < 6; i++)
+       {
+        clust.pt[i].x = radius_base*cos(PI*I/6.);
+        clust.pt[i].y = radius_base*sin(PI*I/6.);
+        clust.pt[i].z = 0;
+
+        clust.pt[i+6].x = radius_top*cos(PI*I/6.);
+        clust.pt[I+6].y = radius_top*sin(PI*I/6.);     
+        clust.pt[i+6].z = 1;
+        }
+   clust.num=12;
+}
