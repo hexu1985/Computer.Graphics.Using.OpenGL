@@ -1,7 +1,11 @@
-//#include <windows.h>   // use as needed for your system
+#include <fstream>
+
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
+
+const char* g_file_name = "./dino.dat";
+
 //<<<<<<<<<<<<<<<<<<<<<<< myInit >>>>>>>>>>>>>>>>>>>>
 void myInit(void)
 {
@@ -12,16 +16,35 @@ void myInit(void)
     glLoadIdentity();
     gluOrtho2D(0.0, 640.0, 0.0, 480.0);
 }
+
+void drawPolyLineFile(const char *fileName)
+{
+    std::fstream inStream;
+    inStream.open(fileName, std::ios::in);    // open the file
+    if(inStream.fail())
+        return;
+    glClear(GL_COLOR_BUFFER_BIT);      // clear the screen 
+    GLint numpolys, numLines, x ,y;
+    inStream >> numpolys;                   // read the number of polylines
+    for(int j = 0; j < numpolys; j++)  // read each polyline
+    {
+        inStream >> numLines;
+        glBegin(GL_LINE_STRIP);         // draw the next polyline
+        for (int i = 0; i < numLines; i++)
+        {
+            inStream >> x >> y;        // read the next x, y pair
+            glVertex2i(x, y);
+        }
+        glEnd();
+    }
+    glFlush();
+    inStream.close();
+}
+
 //<<<<<<<<<<<<<<<<<<<<<<<< myDisplay >>>>>>>>>>>>>>>>>
 void myDisplay(void)
 {
-    glClear(GL_COLOR_BUFFER_BIT);     // clear the screen 
-    glBegin(GL_POINTS);
-        glVertex2i(100, 50);         // draw three points
-        glVertex2i(100, 130);
-        glVertex2i(150, 130);
-    glEnd();    
-    glFlush();                         // send all output to display 
+    drawPolyLineFile(g_file_name);
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<< main >>>>>>>>>>>>>>>>>>>>>>
