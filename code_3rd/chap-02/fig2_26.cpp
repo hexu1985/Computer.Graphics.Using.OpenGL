@@ -35,10 +35,10 @@ void hardwiredHouse(void)
 		glVertex2i(65, 40);
 	glEnd();
 	glBegin(GL_LINE_LOOP);
-		glVertex2i(75, 68);    // draw the window 
-		glVertex2i(75, 83);	
-		glVertex2i(90, 83);
-		glVertex2i(90, 68);
+		glVertex2i(75, 70);    // draw the window 
+		glVertex2i(75, 85);	
+		glVertex2i(90, 85);
+		glVertex2i(90, 70);
 	glEnd();
 }
 
