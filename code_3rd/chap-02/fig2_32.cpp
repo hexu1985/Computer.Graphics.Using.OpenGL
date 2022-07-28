@@ -17,13 +17,13 @@ void myInit(void)
 //<<<<<<<<<<<<<<<<<<<<<<<< myDisplay >>>>>>>>>>>>>>>>>
 void myDisplay(void)
 {
-    glClear(GL_COLOR_BUFFER_BIT);     // clear the screen 
-    glBegin(GL_POINTS);
-        glVertex2i(100, 50);         // draw three points
-        glVertex2i(100, 130);
-        glVertex2i(150, 130);
-    glEnd();    
-    glFlush();                         // send all output to display 
+    glClearColor(1.0,1.0,1.0,0.0); // white background 
+    glClear(GL_COLOR_BUFFER_BIT);  // clear the window
+    glColor3f(0.6,0.6,0.6);		  // bright gray
+    glRecti(20,20,100,70);
+    glColor3f(0.2,0.2,0.2);		  // dark gray
+    glRecti(70, 50, 150, 130);
+    glFlush();
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<< main >>>>>>>>>>>>>>>>>>>>>>
