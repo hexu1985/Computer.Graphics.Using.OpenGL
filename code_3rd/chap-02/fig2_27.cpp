@@ -8,17 +8,6 @@ struct GLintPoint {
     GLint y;
 };
 
-//<<<<<<<<<<<<<<<<<<<<<<< myInit >>>>>>>>>>>>>>>>>>>>
-void myInit(void)
-{
-    glClearColor(1.0,1.0,1.0,0.0);       // set white background color
-    glColor3f(0.0f, 0.0f, 0.0f);          // set the drawing color 
-    glPointSize(4.0);               // is 4 by 4 pixels
-    glMatrixMode(GL_PROJECTION); 
-    glLoadIdentity();
-    gluOrtho2D(0.0, 640.0, 0.0, 480.0);
-}
-
 void parameterizedHouse(GLintPoint peak, GLint width, GLint height)
  // the top of house is at the peak; the size of house is given
  //  by height and width
@@ -48,6 +37,18 @@ void parameterizedHouse(GLintPoint peak, GLint width, GLint height)
 		glVertex2i(peak.x + width / 3, peak.y - 7 * height / 16);
 		glVertex2i(peak.x + width / 3, peak.y - 5 * height / 8);
 	glEnd();
+    glFlush();
+}
+
+//<<<<<<<<<<<<<<<<<<<<<<< myInit >>>>>>>>>>>>>>>>>>>>
+void myInit(void)
+{
+    glClearColor(1.0,1.0,1.0,0.0);       // set white background color
+    glColor3f(0.0f, 0.0f, 0.0f);          // set the drawing color 
+    glPointSize(4.0);               // is 4 by 4 pixels
+    glMatrixMode(GL_PROJECTION); 
+    glLoadIdentity();
+    gluOrtho2D(0.0, 640.0, 0.0, 480.0);
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<< myDisplay >>>>>>>>>>>>>>>>>

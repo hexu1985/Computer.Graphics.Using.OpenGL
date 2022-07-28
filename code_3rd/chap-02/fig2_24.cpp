@@ -6,17 +6,6 @@
 
 const char* g_file_name = "./dino.dat";
 
-//<<<<<<<<<<<<<<<<<<<<<<< myInit >>>>>>>>>>>>>>>>>>>>
-void myInit(void)
-{
-    glClearColor(1.0,1.0,1.0,0.0);       // set white background color
-    glColor3f(0.0f, 0.0f, 0.0f);          // set the drawing color 
-    glPointSize(4.0);               // is 4 by 4 pixels
-    glMatrixMode(GL_PROJECTION); 
-    glLoadIdentity();
-    gluOrtho2D(0.0, 640.0, 0.0, 480.0);
-}
-
 void drawPolyLineFile(const char *fileName)
 {
     std::fstream inStream;
@@ -39,6 +28,17 @@ void drawPolyLineFile(const char *fileName)
     }
     glFlush();
     inStream.close();
+}
+
+//<<<<<<<<<<<<<<<<<<<<<<< myInit >>>>>>>>>>>>>>>>>>>>
+void myInit(void)
+{
+    glClearColor(1.0,1.0,1.0,0.0);       // set white background color
+    glColor3f(0.0f, 0.0f, 0.0f);          // set the drawing color 
+    glPointSize(4.0);               // is 4 by 4 pixels
+    glMatrixMode(GL_PROJECTION); 
+    glLoadIdentity();
+    gluOrtho2D(0.0, 640.0, 0.0, 480.0);
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<< myDisplay >>>>>>>>>>>>>>>>>

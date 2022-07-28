@@ -2,16 +2,6 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-//<<<<<<<<<<<<<<<<<<<<<<< myInit >>>>>>>>>>>>>>>>>>>>
-void myInit(void)
-{
-    glClearColor(1.0,1.0,1.0,0.0);       // set white background color
-    glColor3f(0.0f, 0.0f, 0.0f);          // set the drawing color 
-    glPointSize(4.0);               // is 4 by 4 pixels
-    glMatrixMode(GL_PROJECTION); 
-    glLoadIdentity();
-    gluOrtho2D(0.0, 640.0, 0.0, 480.0);
-}
 
 void hardwiredHouse(void)
 {
@@ -40,6 +30,17 @@ void hardwiredHouse(void)
 		glVertex2i(90, 85);
 		glVertex2i(90, 70);
 	glEnd();
+}
+
+//<<<<<<<<<<<<<<<<<<<<<<< myInit >>>>>>>>>>>>>>>>>>>>
+void myInit(void)
+{
+    glClearColor(1.0,1.0,1.0,0.0);       // set white background color
+    glColor3f(0.0f, 0.0f, 0.0f);          // set the drawing color 
+    glPointSize(4.0);               // is 4 by 4 pixels
+    glMatrixMode(GL_PROJECTION); 
+    glLoadIdentity();
+    gluOrtho2D(0.0, 640.0, 0.0, 480.0);
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<< myDisplay >>>>>>>>>>>>>>>>>

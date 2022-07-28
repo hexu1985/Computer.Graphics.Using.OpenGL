@@ -9,13 +9,36 @@ struct GLintPoint {
     GLint y;
 };
 
-void drawPolyLine(const std::vector<GLintPoint>& poly, bool closed)
+GLintPoint CP;         // global current position
+
+//<<<<<<<<<<<<< moveto >>>>>>>>>>>>>>
+void moveto(GLint x, GLint y)
 {
-	glBegin(closed ? GL_LINE_LOOP : GL_LINE_STRIP);
-        for(int i = 0; i < poly.size(); i++)
-		     glVertex2i(poly[i].x, poly[i].y);
+	CP.x = x; CP.y = y; // update the CP 
+}
+
+//<<<<<<<<<<<< lineTo >>>>>>>>>>>>>>>>>
+void lineto(GLint x, GLint y)
+{
+	glBegin(GL_LINES);  // draw the line 
+		glVertex2i(CP.x, CP.y);
+		glVertex2i(x, y);
 	glEnd();
 	glFlush();
+	CP.x = x; CP.y = y; // update the CP 
+}
+
+void drawPolyLine(const std::vector<GLintPoint>& poly, bool closed)
+{
+    if (poly.size() < 2)
+        return;
+
+    moveto(poly[0].x, poly[0].y);
+    for (int i = 1; i < poly.size(); i++)
+        lineto(poly[i].x, poly[i].y);
+
+    if (closed) 
+       lineto(poly[0].x, poly[0].y); 
 }
 
 void parameterizedHouse(GLintPoint peak, GLint width, GLint height)
