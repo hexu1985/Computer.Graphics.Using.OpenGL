@@ -9,6 +9,31 @@ struct GLintPoint {
     GLint y;
 };
 
+int random(int n)
+{
+    return rand()%n;
+}
+
+void Sierpinski(void) 
+{
+    glClear(GL_COLOR_BUFFER_BIT);     // clear the screen 
+    GLintPoint T[3]= {{10,10},{600,10},{300, 480}};
+    
+    int index = random(3);         // 0, 1, or 2 equally likely 
+    GLintPoint point = T[index];      // initial point 
+    glBegin(GL_POINTS);
+        glVertex2i(point.x, point.y);     // draw initial point 
+        for(int i = 0; i < 55000; i++)  // draw 55000 dots
+        {
+             index = random(3);
+             point.x = (point.x + T[index].x) / 2;
+             point.y = (point.y + T[index].y) / 2;
+             glVertex2i(point.x,point.y);  
+        } 
+    glEnd();    
+    glFlush();     
+}
+
 //<<<<<<<<<<<<<<<<<<<<<<< myInit >>>>>>>>>>>>>>>>>>>>
 void myInit(void)
 {
@@ -18,26 +43,6 @@ void myInit(void)
     glMatrixMode(GL_PROJECTION); 
     glLoadIdentity();
     gluOrtho2D(0.0, 640.0, 0.0, 480.0);
-}
-
-void Sierpinski(void) 
-{
-    glClear(GL_COLOR_BUFFER_BIT);     // clear the screen 
-    GLintPoint T[3]= {{10,10},{600,10},{300, 480}};
-    
-    int index = rand()%3;         // 0, 1, or 2 equally likely 
-    GLintPoint point = T[index];      // initial point 
-    glBegin(GL_POINTS);
-        glVertex2i(point.x, point.y);     // draw initial point 
-        for(int i = 0; i < 55000; i++)  // draw 55000 dots
-        {
-             index = rand()%3;     
-             point.x = (point.x + T[index].x) / 2;
-             point.y = (point.y + T[index].y) / 2;
-             glVertex2i(point.x,point.y);  
-        } 
-    glEnd();    
-    glFlush();     
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<< myDisplay >>>>>>>>>>>>>>>>>
