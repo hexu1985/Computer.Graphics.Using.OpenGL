@@ -19,7 +19,7 @@ void myInit(void)
     glPointSize(4.0);               // is 4 by 4 pixels
     glMatrixMode(GL_PROJECTION); 
     glLoadIdentity();
-    gluOrtho2D(0.0, 640.0, 0.0, 480.0);
+    gluOrtho2D(0.0, screenWidth, 0.0, screenHeight);
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<< myDisplay >>>>>>>>>>>>>>>>>
