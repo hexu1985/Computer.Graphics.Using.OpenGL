@@ -8,7 +8,8 @@ struct GLintPoint {
     GLint y;
 };
 
-static int screenHeight = 480;
+const int screenWidth = 640;       // width of screen window in pixels 
+const int screenHeight = 480;       // height of screen window in pixels
 
 //<<<<<<<<<<<<<<<<<<<<<<< myInit >>>>>>>>>>>>>>>>>>>>
 void myInit(void)
@@ -56,7 +57,7 @@ int main(int argc, char** argv)
 {
     glutInit(&argc, argv);          // initialize the toolkit
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB); // set display mode
-    glutInitWindowSize(640,screenHeight);     // set window size
+    glutInitWindowSize(screenWidth, screenHeight);     // set window size
     glutInitWindowPosition(100, 150); // set window position on screen
     glutCreateWindow("my first attempt"); // open the screen window
     glutDisplayFunc(myDisplay);     // register redraw function
