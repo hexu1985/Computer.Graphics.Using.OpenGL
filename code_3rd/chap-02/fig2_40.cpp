@@ -32,24 +32,23 @@ void myDisplay(void)
 //<<<<<<<<<<<<<<<<<<<<<<<< myMouse >>>>>>>>>>>>>>>>>
 void myMouse(int button, int state, int x, int y)
 {
-    #define NUM 20
-    static GLintPoint List[NUM];
-    static int last = -1;            	// last index used so far 
+    static GLintPoint corner[2];
+    static int numCorners = 0;
 
-    // test for mouse button as well as for a full array
-    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && last < NUM -1)
-    {        
-        List[++last].x = x; 		    // add new point to list
-        List[  last].y = screenHeight - y; // window height is 480
-        glClear(GL_COLOR_BUFFER_BIT);	    // clear the screen 
-        glBegin(GL_LINE_STRIP); 		    // redraw the polyline				     
-        for(int i = 0; i <= last; i++)
-            glVertex2i(List[i].x, List[i].y);
-        glEnd();
+    if (state == GLUT_DOWN) {
+        if (button == GLUT_LEFT_BUTTON) {
+            corner[numCorners].x = x;
+            corner[numCorners].y = screenHeight - y;
+            if (++numCorners == 2) {
+                glRecti(corner[0].x, corner[0].y, corner[1].x, corner[1].y);
+                numCorners = 0;
+                glFlush();
+            }
+        }
+    } else if (button == GLUT_RIGHT_BUTTON) {
+        glClear(GL_COLOR_BUFFER_BIT);
         glFlush();
     }
-    else if(button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
-        last = -1;	         // reset the list to empty
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<< main >>>>>>>>>>>>>>>>>>>>>>
