@@ -1,10 +1,12 @@
-#include <windows.h>
+//#include <windows.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
 
 #include <cmath>
 #include <iostream>
+#include <algorithm>
+
 
 struct GLintPoint {
 
@@ -15,14 +17,15 @@ struct GLintPoint {
 //--------------- setWindow ---------------------
 void setWindow(float left, float right, int bottom, int top)
 {
-glMatrixMode(GL_PROJECTION);
-glLoadIdentity();
-gluOrtho2D(left, right, bottom, top); 
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(left, right, bottom, top); 
 }
+
 //---------------- setViewport ------------------
 void setViewport(int left, int bottom, int width, int height)
 {
-glViewport(left, bottom, width, height);
+    glViewport(left, bottom, width, height);
 }
 
 void hexSwirl() {
@@ -103,10 +106,10 @@ void mouseHandler( int button, int state, int x, int y ) {
 		if( nCorners == 2 ) {
 
 			nCorners = 0;
-			setWindow  ( min( corners[0].x, corners[1].x ),
-						 max( corners[0].x, corners[1].x ),
-						 min( corners[0].y, corners[1].y ),
-						 max( corners[0].y, corners[1].y ) );
+			setWindow  ( std::min( corners[0].x, corners[1].x ),
+						 std::max( corners[0].x, corners[1].x ),
+						 std::min( corners[0].y, corners[1].y ),
+						 std::max( corners[0].y, corners[1].y ) );
 
 			glutPostRedisplay();
 
@@ -128,6 +131,13 @@ void KBHandler( unsigned char key, int x, int y ) {
 
 }
 
+//<<<<<<<<<<<<<<<<<<<<<<< myInit >>>>>>>>>>>>>>>>>>>>
+void myInit(void)
+{
+    glClearColor(1.0,1.0,1.0,0.0);       // set white background color
+    glColor3f(0.0f, 0.0f, 0.0f);          // set the drawing color 
+}
+
 int main(int argc, char** argv)
 {
 	glutInit( &argc, argv ); 
@@ -144,6 +154,7 @@ int main(int argc, char** argv)
 	setViewport( 0, 0, 640, 480 );
 	setWindow(0, 640.0, 0, 480.0);		// set a fixed window
 
+    myInit();
 	glutMainLoop();
 
 	return( 0 );
