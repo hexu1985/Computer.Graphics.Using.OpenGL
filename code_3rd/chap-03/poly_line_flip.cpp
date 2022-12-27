@@ -1,4 +1,4 @@
-#include <windows.h>
+//#include <windows.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
@@ -65,6 +65,13 @@ void render() {
 
 }
 
+//<<<<<<<<<<<<<<<<<<<<<<< myInit >>>>>>>>>>>>>>>>>>>>
+void myInit(void)
+{
+    glClearColor(1.0,1.0,1.0,0.0);       // set white background color
+    glColor3f(0.0f, 0.0f, 0.0f);          // set the drawing color 
+}
+
 int main(int argc, char** argv)
 {
 	glutInit( &argc, argv ); 
@@ -75,6 +82,7 @@ int main(int argc, char** argv)
 	glutCreateWindow( "Poly Line Demo o_O" );
 	
 	glutDisplayFunc( render );;                   
+    myInit();
 	glutMainLoop();
 
 	return( 0 );
