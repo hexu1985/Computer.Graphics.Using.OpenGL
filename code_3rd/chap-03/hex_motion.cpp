@@ -58,10 +58,10 @@ void hexSwirl() {
 
         for( int c = 0; c < 6; c++ ) {
 
-                glVertex2f( x, y );
+            glVertex2f( x, y );
 
-                x += ( length * cos( radPerDeg * ( c * 60.0f ) ) );
-                y += ( length * sin( radPerDeg * ( c * 60.0f ) ) );
+            x += ( length * cos( radPerDeg * ( c * 60.0f ) ) );
+            y += ( length * sin( radPerDeg * ( c * 60.0f ) ) );
 
         }
 
@@ -99,7 +99,7 @@ void render() {
 void mouseHandler( int button, int state, int x, int y ) {
 
     static GLintPoint corners[2];
-    static int    nCorners = 0;
+    static int nCorners = 0;
 
     if( button == GLUT_LEFT_BUTTON && state == GLUT_DOWN ) {
 
@@ -112,9 +112,9 @@ void mouseHandler( int button, int state, int x, int y ) {
 
             nCorners = 0;
             setWindow  ( std::min( corners[0].x, corners[1].x ),
-                         std::max( corners[0].x, corners[1].x ),
-                         std::min( corners[0].y, corners[1].y ),
-                         std::max( corners[0].y, corners[1].y ) );
+                    std::max( corners[0].x, corners[1].x ),
+                    std::min( corners[0].y, corners[1].y ),
+                    std::max( corners[0].y, corners[1].y ) );
 
             glutPostRedisplay();
 
@@ -128,7 +128,7 @@ void KBHandler( unsigned char key, int x, int y ) {
     if( key == 'r' ) {
 
         // reset
-        setWindow(0, 640.0, 0, 480.0);        // set a fixed window
+        setWindow(0, 640.0, 0, 480.0);      // set a fixed window
         glutPostRedisplay();
 
     }
@@ -146,18 +146,18 @@ void myInit(void)
 int main(int argc, char** argv)
 {
     glutInit( &argc, argv ); 
-    
+
     glutInitDisplayMode( GLUT_SINGLE | GLUT_RGB );
     glutInitWindowSize( 640,480 );
     glutInitWindowPosition( 0, 0 );
     glutCreateWindow( "Poly Line Demo o_O" );
-    
+
     glutDisplayFunc( render );
     glutMouseFunc( mouseHandler );
     glutKeyboardFunc( KBHandler );
-    
+
     setViewport( 0, 0, 640, 480 );
-    setWindow(0, 640.0, 0, 480.0);        // set a fixed window
+    setWindow(0, 640.0, 0, 480.0);      // set a fixed window
 
     myInit();
     glutMainLoop();
