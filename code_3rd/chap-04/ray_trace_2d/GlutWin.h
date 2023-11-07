@@ -1,10 +1,10 @@
 #ifndef _GLUTWIN_H_
 #define _GLUTWIN_H_
 
-#include <windows.h>
-#include <gl/Gl.h>
-#include <gl/Glu.h>
-#include <gl/glut.h>
+//#include <windows.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
 
 ////////////////////////////////////////////////////////////
 //                       GlutWin                          //
